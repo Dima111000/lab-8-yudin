@@ -6,8 +6,8 @@ jobs:
   publish_image:
     runs-on: alpine-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - name: Fetch Repository
+        uses: actions/checkout@v2 # or any other version that's allowed
       - name: build
         run: |
           docker build . -t ${{ secrets.DOCKER_HUB_NAME }}/nginx-image:latest
@@ -15,3 +15,4 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_NAME }} -p ${{ secrets.DOCKER_HUB_KEY }}
           docker push ${{ secrets.DOCKER_HUB_NAME }}/nginx-image:latest
+
